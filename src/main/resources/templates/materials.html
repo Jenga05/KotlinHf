@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Materials</title>
+</head>
+<body>
+<h1>All Materials</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Button</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="material : ${materials}">
+        <td th:text="${material.id}"></td>
+        <td th:text="${material.name}"></td>
+        <td th:text="${material.amount}"></td>
+        <td >Place Holder</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

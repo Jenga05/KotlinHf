@@ -1,6 +1,6 @@
 package edu.bme.kotlin.do7dvv.recipeapp.control
 
-import edu.bme.kotlin.do7dvv.recipeapp.data.entities.MaterialEntity
+import edu.bme.kotlin.do7dvv.recipeapp.domain.Material
 import edu.bme.kotlin.do7dvv.recipeapp.domain.MaterialService
 import org.springframework.web.bind.annotation.*
 
@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.*
 class MaterialController(val service: MaterialService) {
 
 
-    @GetMapping
-    fun all(): List<MaterialEntity> {
+    fun all(): List<Material> {
         return service.all()
     }
 
     @GetMapping("/{id}")
-    fun get(@PathVariable id: Int): MaterialEntity {
+    fun get(@PathVariable id: Int): Material {
         return service.get(id)
     }
 
     @PostMapping
-    fun add(@RequestBody material: MaterialEntity): MaterialEntity {
+    fun add(@RequestBody material: Material): Material {
         return service.add(material)
     }
 
@@ -30,7 +29,7 @@ class MaterialController(val service: MaterialService) {
     }
 
     @PutMapping
-    fun alter(@RequestBody material: MaterialEntity): MaterialEntity {
+    fun alter(@RequestBody material: Material): Material {
         return service.alter(material)
     }
 

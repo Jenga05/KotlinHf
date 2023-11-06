@@ -5,32 +5,34 @@ import edu.bme.kotlin.do7dvv.recipeapp.data.repository.MaterialRepository
 import org.springframework.stereotype.Service
 
 @Service
-class MaterialService(private val repository: MaterialRepository) {
+class MaterialService(
+        private val repository: MaterialRepository,
+        private val mapper: MaterialMapper) {
 
-    fun all(): List<MaterialEntity> {
-        return repository.findAll().toList()
+    fun all(): List<Material> {
+        return mapper.toMaterialList(repository.findAll().toList())
     }
 
-    fun get(id: Int): MaterialEntity {
-        return repository.findById(id).get()
+    fun get(id: Int): Material {
+        return mapper.toMaterial(repository.findById(id).get())
     }
 
 
-    fun add(material: MaterialEntity): MaterialEntity {
-        return repository.save(material)
+    fun add(material: Material): Material {
+        return mapper.toMaterial(repository.save(mapper.toEntity(material)))
     }
 
     fun remove(id: Int) {
         repository.deleteById(id)
     }
 
-    fun alter(material: MaterialEntity): MaterialEntity {
+    fun alter(material: Material): Material {
         if (material.id != null) {
             var findById: MaterialEntity = repository.findById(material.id ?: 0).get()
             findById.amount += material.amount
-            return repository.save(findById)
+            return mapper.toMaterial(repository.save(findById))
         }
-        return MaterialEntity("", 0)
+        return Material(-1,"", 0)
     }
 
 }
