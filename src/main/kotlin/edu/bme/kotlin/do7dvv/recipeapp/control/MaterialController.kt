@@ -2,13 +2,16 @@ package edu.bme.kotlin.do7dvv.recipeapp.control
 
 import edu.bme.kotlin.do7dvv.recipeapp.domain.Material
 import edu.bme.kotlin.do7dvv.recipeapp.domain.MaterialService
+import org.springframework.core.annotation.Order
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/material")
+@Order(0)
 class MaterialController(val service: MaterialService) {
 
 
+    @GetMapping
     fun all(): List<Material> {
         return service.all()
     }
