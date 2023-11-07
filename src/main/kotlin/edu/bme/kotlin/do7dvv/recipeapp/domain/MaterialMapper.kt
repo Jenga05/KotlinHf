@@ -1,6 +1,7 @@
 package edu.bme.kotlin.do7dvv.recipeapp.domain
 
 import edu.bme.kotlin.do7dvv.recipeapp.data.entities.MaterialEntity
+import edu.bme.kotlin.do7dvv.recipeapp.domain.form.CreateMaterial
 import org.mapstruct.Mapper
 import org.springframework.stereotype.Component
 
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component
 @Mapper(componentModel = "spring")
 interface MaterialMapper {
 
-    abstract fun toMaterial(entity: MaterialEntity): Material
+    abstract fun toMaterial(entity: MaterialEntity?): Material
 
     abstract fun toEntity(material: Material): MaterialEntity
 
@@ -16,5 +17,6 @@ interface MaterialMapper {
 
     abstract fun toEntityList(material: List<Material>): List<MaterialEntity>
 
+    abstract fun toMaterial(material: CreateMaterial): Material
 
 }

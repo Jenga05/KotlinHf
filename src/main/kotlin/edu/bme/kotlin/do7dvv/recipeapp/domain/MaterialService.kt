@@ -3,6 +3,7 @@ package edu.bme.kotlin.do7dvv.recipeapp.domain
 import edu.bme.kotlin.do7dvv.recipeapp.data.entities.MaterialEntity
 import edu.bme.kotlin.do7dvv.recipeapp.data.repository.MaterialRepository
 import org.springframework.stereotype.Service
+import kotlin.jvm.optionals.getOrNull
 
 @Service
 class MaterialService(
@@ -32,7 +33,11 @@ class MaterialService(
             findById.amount += material.amount
             return mapper.toMaterial(repository.save(findById))
         }
-        return Material(-1,"", 0)
+        return Material(-1, "", 0)
+    }
+
+    fun byName(name: String): Material?{
+        return mapper.toMaterial(repository.findByName(name).getOrNull())
     }
 
 }
